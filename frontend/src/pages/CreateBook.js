@@ -4,6 +4,7 @@ import Spinner from '../components/Spinner';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
+const BASE_URL = process.env.BACKEND_URL;
 const CreateBook = () => {
     const [title,setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -22,7 +23,7 @@ const CreateBook = () => {
         
         setLoading(true);
         axios
-            .post('http://localhost:5555/books', book)
+            .post(BASE_URL, book)
             .then(() => {
                 setLoading(false);
                 navigate('/');

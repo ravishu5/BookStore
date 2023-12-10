@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 
+const BASE_URL = process.env.BACKEND_URL;
+
 const DeleteBook = () => {
     const [loading,setLoading] = useState(false);
     const navigate = useNavigate();
@@ -12,7 +14,7 @@ const DeleteBook = () => {
     const handleDelete = () => {
         setLoading(true);
         axios
-            .delete(`http://localhost:5555/books/${id}`)
+            .delete(`${BASE_URL}/${id}`)
             .then(()=>{
                 setLoading(false);
                 navigate('/');

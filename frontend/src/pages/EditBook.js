@@ -13,11 +13,13 @@ const EditBook = () => {
 
     const {id} = useParams();
 
+    const BASE_URL = process.env.BACKEND_URL;
+
     // fetch previous info of book
     useEffect(()=>{
         setLoading(true);
         axios
-            .get(`http://localhost:5555/books/${id}`)
+            .get(`${BASE_URL}/${id}`)
             .then((response)=>{
                 setTitle(response.data.title);
                 setAuthor(response.data.author);
@@ -42,7 +44,7 @@ const EditBook = () => {
         
         setLoading(true);
         axios
-            .put(`http://localhost:5555/books/${id}`, book)
+            .put(`${BASE_URL}/${id}`, book)
             .then(() => {
                 setLoading(false);
                 navigate('/');

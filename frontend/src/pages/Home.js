@@ -7,44 +7,16 @@ import {MdOutlineAddBox, MdOutlineDelete} from 'react-icons/md'
 import Spinner from '../components/Spinner';
 
 const Home = () => {
-    
-//     const bookData = {
-//         count : 4,
-//         data : [
-//             {
-//                 _id: 1,
-//                 title: 'The Lord of the Rings',
-//                 author: 'J.R.R. Tolkien',
-//                 publishYear: 1954
-//             },
-//             {
-//                 _id: 2,
-//                 title: 'The Hobbit',
-//                 author: 'J.R.R. Tolkien',
-//                 publishYear: 1937
-//             },
-//             {
-//                 _id: 3,
-//                 title: 'The Silmarillion',
-//                 author: 'J.R.R. Tolkien',
-//                 publishYear: 1977
-//             },
-//             {
-//                 _id: 4,
-//                 title: 'The Children of Hurin',
-//                 author: 'J.R.R. Tolkien',
-//                 publishYear: 2007
-//             }
-//         ]
-//     }
 
     const [loading, setLoading] = useState(false);
     const [books, setBooks] = useState([]);
 
+    const BASE_URL = process.env.BACKEND_URL;
+
     useEffect(()=>{
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get(BASE_URL)
             .then((response)=>{
                 setBooks(response.data.data);  //response.data is data we get from api, .data is the data object inside it.
                 setLoading(false);

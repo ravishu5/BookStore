@@ -9,10 +9,12 @@ const ShowBook = () => {
     const [loading, setLoading] = useState(false);
     const {id} = useParams();
 
+    const BASE_URL = process.env.BACKEND_URL;
+
     useEffect(()=>{
         setLoading(true);
         axios
-            .get(`http://localhost:5555/books/${id}`)
+            .get(`${BASE_URL}/${id}`)
             .then((response)=>{
                 setBook(response.data)
                 setLoading(false);
