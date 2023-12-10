@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import Book from "./models/bookModel.js";
 import booksRoute from "./routes/booksRoute.js";
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // const bodyParser = require('body-parser');
 const app = express();
@@ -20,8 +22,9 @@ app.get("/",(request,response)=>{
 // middleware for all model routes
 app.use('/books',booksRoute);
 
+const URI = process.env.MONGODB_URI;
 mongoose
-    .connect("mongodb+srv://itsshankarravi:zxcvasdf@cluster0.co1xnm7.mongodb.net/")
+    .connect(URI)
     .then(()=>{
         console.log("MongoDB connected successfully");
         app.listen(5555,()=>{
